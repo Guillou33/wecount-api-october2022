@@ -1,0 +1,13 @@
+node_modules
+build
+config/local.yml
+config/local-*.yml
+files/temp
+config/jwt/private.pem
+config/jwt/public.pem
+ormconfig.json
+.env
+src/test/config/jwt/private.pem
+src/test/config/jwt/public.pem
+newrelic_agent.log
+var/log

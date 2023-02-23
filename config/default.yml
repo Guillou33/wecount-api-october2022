@@ -1,0 +1,41 @@
+port: 4000
+baseUrl: "localhost:4000"
+baseFrontUrl: "localhost:3000"
+db:
+  type: "mysql"
+  host: "localhost"
+  database: "wecount"
+  entities: ["build/entity/*.js"]
+  migrationsTableName: "migrations"
+  migrations: ["src/migration/*.ts"]
+  cli:
+    migrationsDir: "src/migration"
+  logging: false
+sentry:
+  tracesSampleRate: 0.001
+  tracing: true
+jwt:
+  publicKeyPath: 'config/jwt/public.pem'
+  privateKeyPath: 'config/jwt/private.pem'
+  # 1 day
+  expirationInSeconds: 86400
+mail:
+  sandboxMode: false
+  defaultFromEmail: hello@wecount.io
+  defaultFromName: WeCount
+  defaultMailSender: sendinblue
+mixpanel:
+  host: api-eu.mixpanel.com
+  sandboxMode: false
+adminEmails: []
+translation:
+  fallbackLocale: fr-FR
+prefixMonitoring:
+  appName: WeCount API
+  enabled: false
+newrelicMonitoring:
+  appName: WeCount API
+  enabled: false
+  licenseKey: 'tobereplaced'
+  logging: 
+    level: info

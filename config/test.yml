@@ -1,0 +1,25 @@
+baseUrl: "localhost:4000"
+baseFrontUrl: "localhost:3000"
+jwt:
+  privateKeyPassphrase: '8NcGYzhJ2cUSdogt3'
+  publicKeyPath: 'src/test/config/jwt/public.pem'
+  privateKeyPath: 'src/test/config/jwt/private.pem'
+db:
+  type: "mysql"
+  host: "mysql"
+  database: "wecount_test"
+  entities: ["build/entity/*.js"]
+  migrations: ["migration/*.ts"]
+  logging: false
+  username: "root"
+  password: "root"
+  cli:
+    migrationsDir: "migration"
+  dropSchema: false
+sentry:
+  dsn: null
+mail:
+  sandboxMode: true
+mixpanel:
+  sandboxMode: true
+adminEmails: []

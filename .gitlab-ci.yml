@@ -1,0 +1,112 @@
+# Local :  gitlab-runner exec docker integration_test
+
+stages:
+  - Integration tests
+  - Deploy staging
+  - Deploy prod
+
+variables:
+      MYSQL_DATABASE: "wecount_test"
+      MYSQL_ROOT_PASSWORD: "root"
+#  to test with local gitlab-runner
+      #   SSH_KNOWN_HOSTS: "useless_in_local"
+      #   STAGING_DEPLOY_SSH_KEY: "path_to_key"
+
+cache:
+  paths:
+    - node_modules/
+    - .yarn
+
+integration_test:
+  stage: Integration tests
+  image: node
+  services:
+    - name: mysql:8.0
+      command: ["--default-authentication-plugin=mysql_native_password"]
+  only:
+    - dev
+    - master
+  before_script: 
+    # We tell GitLab to install all the packages before running anything. Docker images come with yarn preinstalled
+    - apt-get update -qq && apt-get install
+    - yarn config set cache-folder .yarn
+    - yarn 
+    - yarn build
+    
+  script:
+    - yarn test-ci
+  artifacts:
+    paths:
+      - junit.xml
+    reports:
+      junit: junit.xml
+  allow_failure: false
+
+# deploy_staging_mathieu:
+#   stage: Deploy staging mathieu
+#   image: node
+#   only:
+#     - dev-mathieu
+#   script:
+#     - apt-get install -y bash
+#     - mkdir ~/.ssh
+#     - touch ~/.ssh/known_hosts
+#     - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+#     - chmod 644 ~/.ssh/known_hosts
+#     - chmod 600 $STAGING_DEPLOY_SSH_KEY
+#     - sed -i -e "s#__ssh_staging_key_path_to_replace__#$STAGING_DEPLOY_SSH_KEY#g" ecosystem.config.js
+#     - cat ecosystem.config.js
+#     - npm i -g pm2
+#     - pm2 deploy ecosystem.config.js staging_mathieu --force
+
+# deploy_staging_thomas:
+#   stage: Deploy staging thomas
+#   image: node
+#   only:
+#     - dev-thomas
+#   script:
+#     - apt-get install -y bash
+#     - mkdir ~/.ssh
+#     - touch ~/.ssh/known_hosts
+#     - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+#     - chmod 644 ~/.ssh/known_hosts
+#     - chmod 600 $STAGING_DEPLOY_SSH_KEY
+#     - sed -i -e "s#__ssh_staging_key_path_to_replace__#$STAGING_DEPLOY_SSH_KEY#g" ecosystem.config.js
+#     - cat ecosystem.config.js
+#     - npm i -g pm2
+#     - pm2 deploy ecosystem.config.js staging_thomas --force
+
+deploy_staging:
+  stage: Deploy staging
+  image: node
+  only:
+    - dev
+  script:
+    - apt-get install -y bash
+    - mkdir ~/.ssh
+    - touch ~/.ssh/known_hosts
+    - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - chmod 600 $STAGING_DEPLOY_SSH_KEY
+    - sed -i -e "s#__ssh_staging_key_path_to_replace__#$STAGING_DEPLOY_SSH_KEY#g" ecosystem.config.js
+    - cat ecosystem.config.js
+    - npm i -g pm2
+    - pm2 deploy ecosystem.config.js staging --force
+
+deploy_prod:
+  stage: Deploy prod
+  image: node
+  only:
+    - master
+  script:
+    - apt-get install -y bash
+    - mkdir ~/.ssh
+    - touch ~/.ssh/known_hosts
+    - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - chmod 600 $PRODUCTION_DEPLOY_SSH_KEY
+    - sed -i -e "s#__ssh_production_key_path_to_replace__#$PRODUCTION_DEPLOY_SSH_KEY#g" ecosystem.config.js
+    - cat ecosystem.config.js
+    - npm i -g pm2
+    - pm2 deploy ecosystem.config.js production --force
+

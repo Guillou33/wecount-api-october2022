@@ -1,0 +1,3 @@
+export enum ComputeMode {
+  ACCOUNTING_DEPRECIATION = "ACCOUNTING_DEPRECIATION",
+}

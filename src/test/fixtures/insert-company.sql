@@ -1,0 +1,1 @@
+INSERT INTO company (id, name) VALUES (2, "wecount-testing")

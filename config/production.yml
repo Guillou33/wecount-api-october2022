@@ -1,0 +1,3 @@
+sentry:
+  dsn: "https://bf9c940013634381a0e793d29e33be5f@o482196.ingest.sentry.io/5533102"
+adminEmails: ["thomas@weepulse.fr", "marine@wecount.io"]

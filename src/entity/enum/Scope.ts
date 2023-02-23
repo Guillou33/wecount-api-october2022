@@ -1,0 +1,5 @@
+export enum SCOPE {
+  UPSTREAM = "UPSTREAM",
+  CORE = "CORE",
+  DOWNSTREAM = "DOWNSTREAM",
+}

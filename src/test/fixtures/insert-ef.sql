@@ -1,0 +1,9 @@
+# Dump of table emission_factor
+# ------------------------------------------------------------
+
+INSERT INTO `emission_factor` (`id`, `created_at`, `updated_at`, `value`, `uncertainty`, `description_content_code`, `input1_unit_content_code`, `input2_unit_content_code`, `emission_factor_info_id`, `element_type`, `db_name`, `db_id`, `program_content_code`, `url_program_content_code`, `is_private`, `archived`, `archived_reason`, `archived_comment`, `inactive`, `inactive_reason`, `inactive_comment`, `name_content_code`, `source_content_code`, `unit_content_code`, `tag_ids`)
+VALUES
+	(1,'2021-09-10 13:37:49.566640','2021-09-10 13:37:49.566640',2.81,0,NULL,'ef_input1_unit_content_code_1',NULL,1,'ELEMENT','ADEME','39','ef_program_content_code_1','ef_url_program_content_code_1',0,0,NULL,NULL,0,NULL,NULL,'ef_name_content_code_1','ef_source_content_code_1','ef_unit_content_code_1', '[1]'),
+	(2,'2021-09-10 13:37:49.610507','2021-09-10 13:37:49.610507',3.83,0,NULL,'ef_input1_unit_content_code_2',NULL,2,'ELEMENT','ADEME','33558','ef_program_content_code_2','ef_url_program_content_code_2',0,0,NULL,NULL,0,NULL,NULL,'ef_name_content_code_2','ef_source_content_code_2','ef_unit_content_code_2', '[1,2]'),
+	(3,'2021-09-10 13:37:49.648067','2021-09-10 13:37:49.648067',7.55,0,NULL,'ef_input1_unit_content_code_3',NULL,3,'ELEMENT','ADEME','32682','ef_program_content_code_3','ef_url_program_content_code_3',0,0,NULL,NULL,0,NULL,NULL,'ef_name_content_code_3','ef_source_content_code_3','ef_unit_content_code_3', '[1]'),
+	(4,'2021-09-10 13:37:49.687083','2021-09-10 13:37:49.687083',3.4,0,NULL,'ef_input1_unit_content_code_4',NULL,4,'ELEMENT','ADEME','32683','ef_program_content_code_4','ef_url_program_content_code_4',0,0,NULL,NULL,0,NULL,NULL,'ef_name_content_code_4','ef_source_content_code_4','ef_unit_content_code_4', '[1]');

@@ -1,0 +1,6 @@
+export enum CampaignStatus {
+  IN_PREPARATION = "IN_PREPARATION",
+  IN_PROGRESS = "IN_PROGRESS",
+  CLOSED = "CLOSED",
+  ARCHIVED = "ARCHIVED",
+}
